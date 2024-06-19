@@ -1,0 +1,75 @@
+server:
+  - name: coreHttp
+    type: http
+    config:
+      port: xxxx
+      host: xxxx
+      tcpKeepAlive: true
+inject:
+  jooq: com.datacube.framework.plugin.jooq.JooqInfix
+  redis: com.datacube.framework.plugin.redis.RedisInfix
+
+cors:
+  methods:
+    - GET
+    - POST
+    - DELETE
+    - PUT
+    - PATCH
+  headers:
+    - x-requested-with
+    - Access-Control-Allow-Origin
+    - origin
+    - Content-Type
+    - accept
+    - X-DataCube-Token
+
+hazelcast:
+  enabled: true
+  clusterName: datatable
+
+pg:
+  host: xxxxx
+  port: xxxx
+  user: xxxx
+  password: xxxx
+  database: xxxx
+  pool:
+    maxSize: 10
+
+datacube:
+  clusteredSession: true
+  sessionName: datatable-web.session
+
+jooq:
+  provider:
+    driverClassName: org.postgresql.Driver
+    username: xxxx
+    password: xxxx
+    hostname: xxxx
+    instance: xxxx
+    jdbcUrl: xxxx
+    category: POSTGRESQL
+
+redis:
+  # redis://[:password@]host[:port][/db-number]
+  connectionString: xxxx
+
+vertx:
+  preferNativeTransport: true
+  tracingOptions:
+    serviceName: datatable
+    senderOptions:
+      senderEndpoint: xxxxxxxx
+
+flyway:
+  url: xxxxx
+  user: postgres
+  password: xxxx
+  locations: xxxx
+  enable: true
+  baselineOnMigrate: true
+  table: xxxxx
+  baselineVersion: 0
+  validateOnMigrate: false
+  cleanDisabled: true

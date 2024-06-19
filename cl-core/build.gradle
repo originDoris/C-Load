@@ -1,0 +1,66 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/public/' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.guardsquare:proguard-gradle:7.4.2'
+    }
+}
+
+plugins {
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'org.flywaydb.flyway' version '8.0.3'
+}
+
+ext{
+}
+
+group = 'com.cl'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(":cl-framework")
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'org.postgresql:postgresql:42.5.4'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
+
+
+def getVersionWithDate() {
+    def date = new Date().format('yyyyMMdd')
+    def version = getBranch()
+    return "${version}-${date}"
+}
+
+static def getBranch() {
+    def branch = ""
+    def proc = "git rev-parse --abbrev-ref HEAD".execute()
+    proc.in.eachLine { line -> branch = line }
+    proc.err.eachLine { line -> println line }
+    proc.waitFor()
+    branch
+}
+
+shadowJar {
+    delete 'build' // 删除 build 目录
+    archiveBaseName.set(project.name)
+    archiveVersion.set(getVersionWithDate())
+    archiveClassifier.set("fat")
+    mainClassName = "com.cl.Main"
+    mergeServiceFiles()
+
+}

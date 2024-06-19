@@ -1,0 +1,57 @@
+plugins {
+    id 'java-library'
+}
+ext {
+    jacksonVersion = "2.14.2"
+    beanutilsVersion = "1.9.4"
+    reflectionsVersion = "0.10.2"
+    hutoolVersion = "5.8.22"
+    jsr340Version = "4.0.1"
+    javaxWsRsVersion = "2.1.1"
+    jerseyVersion = "2.34"
+    asmVersion = "1.11.9"
+    jooqVersion = "3.16.6"
+    hikaripVersion = "4.0.3"
+}
+
+
+dependencies {
+    api "io.vertx:vertx-web:$vertxVersion"
+    api "io.vertx:vertx-rx-java3:$vertxVersion"
+    api "io.vertx:vertx-config:$vertxVersion"
+    api "io.vertx:vertx-auth-jwt:$vertxVersion"
+    api "io.vertx:vertx-hazelcast:$vertxVersion"
+    api "io.vertx:vertx-service-proxy:$vertxVersion"
+    api "io.vertx:vertx-codegen:$vertxVersion"
+    api "io.vertx:vertx-config-yaml:$vertxVersion"
+    api "io.vertx:vertx-pg-client:$vertxVersion"
+    api "io.vertx:vertx-auth-jwt:$vertxVersion"
+    api "io.vertx:vertx-auth-common:$vertxVersion"
+    api "io.vertx:vertx-redis-client:$vertxVersion"
+    api "io.vertx:vertx-auth-common:$vertxVersion"
+    api "ch.qos.logback:logback-classic:$logbackVersion"
+    api "org.slf4j:slf4j-api:$slf4jVersion"
+    api "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+    api "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion"
+    api "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion"
+    api "commons-beanutils:commons-beanutils:$beanutilsVersion"
+    api "org.reflections:reflections:0.10.2"
+    api "org.bouncycastle:bcprov-jdk15on:1.70"
+    api "io.vertx:vertx-sql-client-templates:$vertxVersion"
+    api "cn.hutool:hutool-crypto:$hutoolVersion"
+    api "cn.hutool:hutool-core:$hutoolVersion"
+    api "javax.servlet:javax.servlet-api:$jsr340Version"
+    compileOnly "javax.servlet:javax.servlet-api:$jsr340Version"
+    api "javax.ws.rs:javax.ws.rs-api:$javaxWsRsVersion"
+    api "org.glassfish.jersey.core:jersey-common:$jerseyVersion"
+    api "com.esotericsoftware:reflectasm:$asmVersion"
+    api "org.jooq:jooq-codegen:$jooqVersion"
+    api "org.jooq:jooq-meta:$jooqVersion"
+    api "org.jooq:jooq:$jooqVersion"
+    api "com.zaxxer:HikariCP:$hikaripVersion"
+    api 'com.ongres.scram:client:2.1'
+    api "io.vertx:vertx-web-client:$vertxVersion"
+    api "io.vertx:vertx-zipkin:$vertxVersion"
+    api "com.oracle.database.jdbc:ojdbc10:19.21.0.0"
+}
+
