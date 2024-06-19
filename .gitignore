@@ -1,8 +1,9 @@
 .idea
 build/
 logs/
-.gradle
 log/
 file-uploads
 .cl.core/build/
 .cl.framework/build/
+/.gradle/
+/gradle/
