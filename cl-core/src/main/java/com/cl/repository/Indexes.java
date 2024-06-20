@@ -23,5 +23,6 @@ public class Indexes {
     // -------------------------------------------------------------------------
 
     public static final Index CL_CODE_CONFIG_DSL_INDEX = Internal.createIndex(DSL.name("cl_code_config_dsl_index"), ClCodeConfig.CL_CODE_CONFIG, new OrderField[] { ClCodeConfig.CL_CODE_CONFIG.DSL }, false);
+    public static final Index CL_CODE_CONFIG_SERVER_ADDRESS_TENANT_ID_UINDEX = Internal.createIndex(DSL.name("cl_code_config_server_address_tenant_id_uindex"), ClCodeConfig.CL_CODE_CONFIG, new OrderField[] { ClCodeConfig.CL_CODE_CONFIG.SERVER_ADDRESS, ClCodeConfig.CL_CODE_CONFIG.TENANT_ID }, true);
     public static final Index CL_CODE_CONFIG_STATUS_INDEX = Internal.createIndex(DSL.name("cl_code_config_status_index"), ClCodeConfig.CL_CODE_CONFIG, new OrderField[] { ClCodeConfig.CL_CODE_CONFIG.STATUS }, false);
 }

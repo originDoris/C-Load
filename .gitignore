@@ -3,7 +3,7 @@ build/
 logs/
 log/
 file-uploads
-.cl.core/build/
-.cl.framework/build/
 /.gradle/
 /gradle/
+/cl-core/build/
+/cl-framework/build/

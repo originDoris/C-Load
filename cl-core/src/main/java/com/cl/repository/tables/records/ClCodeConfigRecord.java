@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 
 import org.jooq.Field;
 import org.jooq.Record1;
-import org.jooq.Record12;
-import org.jooq.Row12;
+import org.jooq.Record14;
+import org.jooq.Row14;
 import org.jooq.impl.UpdatableRecordImpl;
 
 
@@ -22,7 +22,7 @@ import static com.cl.framework.plugin.jooq.generate.VertxPojo.*;
  * 代码配置
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
-public class ClCodeConfigRecord extends UpdatableRecordImpl<ClCodeConfigRecord> implements VertxPojo, Record12<Long, LocalDateTime, LocalDateTime, String, String, String, String, String, Short, Long, String, String>, IClCodeConfig {
+public class ClCodeConfigRecord extends UpdatableRecordImpl<ClCodeConfigRecord> implements VertxPojo, Record14<Long, LocalDateTime, LocalDateTime, String, String, String, String, String, Short, Long, String, String, String, String>, IClCodeConfig {
 
     private static final long serialVersionUID = 1L;
 
@@ -232,6 +232,40 @@ public class ClCodeConfigRecord extends UpdatableRecordImpl<ClCodeConfigRecord> 
         return (String) get(11);
     }
 
+    /**
+     * Setter for <code>public.cl_code_config.server_address</code>. 服务地址 唯一
+     */
+    @Override
+    public ClCodeConfigRecord setServerAddress(String value) {
+        set(12, value);
+        return this;
+    }
+
+    /**
+     * Getter for <code>public.cl_code_config.server_address</code>. 服务地址 唯一
+     */
+    @Override
+    public String getServerAddress() {
+        return (String) get(12);
+    }
+
+    /**
+     * Setter for <code>public.cl_code_config.method_name</code>. 方法名
+     */
+    @Override
+    public ClCodeConfigRecord setMethodName(String value) {
+        set(13, value);
+        return this;
+    }
+
+    /**
+     * Getter for <code>public.cl_code_config.method_name</code>. 方法名
+     */
+    @Override
+    public String getMethodName() {
+        return (String) get(13);
+    }
+
     // -------------------------------------------------------------------------
     // Primary key information
     // -------------------------------------------------------------------------
@@ -242,17 +276,17 @@ public class ClCodeConfigRecord extends UpdatableRecordImpl<ClCodeConfigRecord> 
     }
 
     // -------------------------------------------------------------------------
-    // Record12 type implementation
+    // Record14 type implementation
     // -------------------------------------------------------------------------
 
     @Override
-    public Row12<Long, LocalDateTime, LocalDateTime, String, String, String, String, String, Short, Long, String, String> fieldsRow() {
-        return (Row12) super.fieldsRow();
+    public Row14<Long, LocalDateTime, LocalDateTime, String, String, String, String, String, Short, Long, String, String, String, String> fieldsRow() {
+        return (Row14) super.fieldsRow();
     }
 
     @Override
-    public Row12<Long, LocalDateTime, LocalDateTime, String, String, String, String, String, Short, Long, String, String> valuesRow() {
-        return (Row12) super.valuesRow();
+    public Row14<Long, LocalDateTime, LocalDateTime, String, String, String, String, String, Short, Long, String, String, String, String> valuesRow() {
+        return (Row14) super.valuesRow();
     }
 
     @Override
@@ -316,6 +350,16 @@ public class ClCodeConfigRecord extends UpdatableRecordImpl<ClCodeConfigRecord> 
     }
 
     @Override
+    public Field<String> field13() {
+        return ClCodeConfig.CL_CODE_CONFIG.SERVER_ADDRESS;
+    }
+
+    @Override
+    public Field<String> field14() {
+        return ClCodeConfig.CL_CODE_CONFIG.METHOD_NAME;
+    }
+
+    @Override
     public Long component1() {
         return getId();
     }
@@ -376,6 +420,16 @@ public class ClCodeConfigRecord extends UpdatableRecordImpl<ClCodeConfigRecord> 
     }
 
     @Override
+    public String component13() {
+        return getServerAddress();
+    }
+
+    @Override
+    public String component14() {
+        return getMethodName();
+    }
+
+    @Override
     public Long value1() {
         return getId();
     }
@@ -433,6 +487,16 @@ public class ClCodeConfigRecord extends UpdatableRecordImpl<ClCodeConfigRecord> 
     @Override
     public String value12() {
         return getDesc();
+    }
+
+    @Override
+    public String value13() {
+        return getServerAddress();
+    }
+
+    @Override
+    public String value14() {
+        return getMethodName();
     }
 
     @Override
@@ -508,7 +572,19 @@ public class ClCodeConfigRecord extends UpdatableRecordImpl<ClCodeConfigRecord> 
     }
 
     @Override
-    public ClCodeConfigRecord values(Long value1, LocalDateTime value2, LocalDateTime value3, String value4, String value5, String value6, String value7, String value8, Short value9, Long value10, String value11, String value12) {
+    public ClCodeConfigRecord value13(String value) {
+        setServerAddress(value);
+        return this;
+    }
+
+    @Override
+    public ClCodeConfigRecord value14(String value) {
+        setMethodName(value);
+        return this;
+    }
+
+    @Override
+    public ClCodeConfigRecord values(Long value1, LocalDateTime value2, LocalDateTime value3, String value4, String value5, String value6, String value7, String value8, Short value9, Long value10, String value11, String value12, String value13, String value14) {
         value1(value1);
         value2(value2);
         value3(value3);
@@ -521,6 +597,8 @@ public class ClCodeConfigRecord extends UpdatableRecordImpl<ClCodeConfigRecord> 
         value10(value10);
         value11(value11);
         value12(value12);
+        value13(value13);
+        value14(value14);
         return this;
     }
 
@@ -542,6 +620,8 @@ public class ClCodeConfigRecord extends UpdatableRecordImpl<ClCodeConfigRecord> 
         setTenantId(from.getTenantId());
         setCodeName(from.getCodeName());
         setDesc(from.getDesc());
+        setServerAddress(from.getServerAddress());
+        setMethodName(from.getMethodName());
     }
 
     @Override
@@ -564,7 +644,7 @@ public class ClCodeConfigRecord extends UpdatableRecordImpl<ClCodeConfigRecord> 
     /**
      * Create a detached, initialised ClCodeConfigRecord
      */
-    public ClCodeConfigRecord(Long id, LocalDateTime gmtCreate, LocalDateTime gmtModified, String creator, String editor, String dsl, String content, String status, Short isDelete, Long tenantId, String codeName, String desc) {
+    public ClCodeConfigRecord(Long id, LocalDateTime gmtCreate, LocalDateTime gmtModified, String creator, String editor, String dsl, String content, String status, Short isDelete, Long tenantId, String codeName, String desc, String serverAddress, String methodName) {
         super(ClCodeConfig.CL_CODE_CONFIG);
 
         setId(id);
@@ -579,6 +659,8 @@ public class ClCodeConfigRecord extends UpdatableRecordImpl<ClCodeConfigRecord> 
         setTenantId(tenantId);
         setCodeName(codeName);
         setDesc(desc);
+        setServerAddress(serverAddress);
+        setMethodName(methodName);
     }
 
     /**
@@ -600,6 +682,8 @@ public class ClCodeConfigRecord extends UpdatableRecordImpl<ClCodeConfigRecord> 
             setTenantId(value.getTenantId());
             setCodeName(value.getCodeName());
             setDesc(value.getDesc());
+            setServerAddress(value.getServerAddress());
+            setMethodName(value.getMethodName());
         }
     }
 

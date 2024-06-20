@@ -18,7 +18,7 @@ import org.jooq.ForeignKey;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row12;
+import org.jooq.Row14;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -110,6 +110,16 @@ public class ClCodeConfig extends TableImpl<ClCodeConfigRecord> {
      */
     public final TableField<ClCodeConfigRecord, String> DESC = createField(org.jooq.impl.DSL.name("desc"), SQLDataType.VARCHAR(255), this, "");
 
+    /**
+     * The column <code>public.cl_code_config.server_address</code>. 服务地址 唯一
+     */
+    public final TableField<ClCodeConfigRecord, String> SERVER_ADDRESS = createField(org.jooq.impl.DSL.name("server_address"), SQLDataType.VARCHAR(50).nullable(false), this, "服务地址 唯一");
+
+    /**
+     * The column <code>public.cl_code_config.method_name</code>. 方法名
+     */
+    public final TableField<ClCodeConfigRecord, String> METHOD_NAME = createField(org.jooq.impl.DSL.name("method_name"), SQLDataType.VARCHAR(50).nullable(false), this, "方法名");
+
     private ClCodeConfig(Name alias, Table<ClCodeConfigRecord> aliased) {
         this(alias, aliased, null);
     }
@@ -150,7 +160,7 @@ public class ClCodeConfig extends TableImpl<ClCodeConfigRecord> {
 
     @Override
     public List<Index> getIndexes() {
-        return Arrays.asList(Indexes.CL_CODE_CONFIG_DSL_INDEX, Indexes.CL_CODE_CONFIG_STATUS_INDEX);
+        return Arrays.asList(Indexes.CL_CODE_CONFIG_DSL_INDEX, Indexes.CL_CODE_CONFIG_SERVER_ADDRESS_TENANT_ID_UINDEX, Indexes.CL_CODE_CONFIG_STATUS_INDEX);
     }
 
     @Override
@@ -185,11 +195,11 @@ public class ClCodeConfig extends TableImpl<ClCodeConfigRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row12 type methods
+    // Row14 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row12<Long, LocalDateTime, LocalDateTime, String, String, String, String, String, Short, Long, String, String> fieldsRow() {
-        return (Row12) super.fieldsRow();
+    public Row14<Long, LocalDateTime, LocalDateTime, String, String, String, String, String, Short, Long, String, String, String, String> fieldsRow() {
+        return (Row14) super.fieldsRow();
     }
 }

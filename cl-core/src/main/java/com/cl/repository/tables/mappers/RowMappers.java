@@ -22,6 +22,8 @@ public class RowMappers {
                         pojo.setTenantId(row.getLong("tenant_id"));
                         pojo.setCodeName(row.getString("code_name"));
                         pojo.setDesc(row.getString("desc"));
+                        pojo.setServerAddress(row.getString("server_address"));
+                        pojo.setMethodName(row.getString("method_name"));
                         return pojo;
                 };
         }

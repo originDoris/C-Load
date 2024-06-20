@@ -31,6 +31,8 @@ public class ClCodeConfig implements VertxPojo, IClCodeConfig {
     private Long          tenantId;
     private String        codeName;
     private String        desc;
+    private String        serverAddress;
+    private String        methodName;
 
     public ClCodeConfig() {}
 
@@ -47,6 +49,8 @@ public class ClCodeConfig implements VertxPojo, IClCodeConfig {
         this.tenantId = value.getTenantId();
         this.codeName = value.getCodeName();
         this.desc = value.getDesc();
+        this.serverAddress = value.getServerAddress();
+        this.methodName = value.getMethodName();
     }
 
     public ClCodeConfig(
@@ -61,7 +65,9 @@ public class ClCodeConfig implements VertxPojo, IClCodeConfig {
         Short         isDelete,
         Long          tenantId,
         String        codeName,
-        String        desc
+        String        desc,
+        String        serverAddress,
+        String        methodName
     ) {
         this.id = id;
         this.gmtCreate = gmtCreate;
@@ -75,6 +81,8 @@ public class ClCodeConfig implements VertxPojo, IClCodeConfig {
         this.tenantId = tenantId;
         this.codeName = codeName;
         this.desc = desc;
+        this.serverAddress = serverAddress;
+        this.methodName = methodName;
     }
 
         public ClCodeConfig(io.vertx.core.json.JsonObject json) {
@@ -288,6 +296,40 @@ public class ClCodeConfig implements VertxPojo, IClCodeConfig {
         return this;
     }
 
+    /**
+     * Getter for <code>public.cl_code_config.server_address</code>. 服务地址 唯一
+     */
+    @Override
+    public String getServerAddress() {
+        return this.serverAddress;
+    }
+
+    /**
+     * Setter for <code>public.cl_code_config.server_address</code>. 服务地址 唯一
+     */
+    @Override
+    public ClCodeConfig setServerAddress(String serverAddress) {
+        this.serverAddress = serverAddress;
+        return this;
+    }
+
+    /**
+     * Getter for <code>public.cl_code_config.method_name</code>. 方法名
+     */
+    @Override
+    public String getMethodName() {
+        return this.methodName;
+    }
+
+    /**
+     * Setter for <code>public.cl_code_config.method_name</code>. 方法名
+     */
+    @Override
+    public ClCodeConfig setMethodName(String methodName) {
+        this.methodName = methodName;
+        return this;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -369,6 +411,18 @@ public class ClCodeConfig implements VertxPojo, IClCodeConfig {
         }
         else if (!this.desc.equals(other.desc))
             return false;
+        if (this.serverAddress == null) {
+            if (other.serverAddress != null)
+                return false;
+        }
+        else if (!this.serverAddress.equals(other.serverAddress))
+            return false;
+        if (this.methodName == null) {
+            if (other.methodName != null)
+                return false;
+        }
+        else if (!this.methodName.equals(other.methodName))
+            return false;
         return true;
     }
 
@@ -388,6 +442,8 @@ public class ClCodeConfig implements VertxPojo, IClCodeConfig {
         result = prime * result + ((this.tenantId == null) ? 0 : this.tenantId.hashCode());
         result = prime * result + ((this.codeName == null) ? 0 : this.codeName.hashCode());
         result = prime * result + ((this.desc == null) ? 0 : this.desc.hashCode());
+        result = prime * result + ((this.serverAddress == null) ? 0 : this.serverAddress.hashCode());
+        result = prime * result + ((this.methodName == null) ? 0 : this.methodName.hashCode());
         return result;
     }
 
@@ -407,6 +463,8 @@ public class ClCodeConfig implements VertxPojo, IClCodeConfig {
         sb.append(", ").append(tenantId);
         sb.append(", ").append(codeName);
         sb.append(", ").append(desc);
+        sb.append(", ").append(serverAddress);
+        sb.append(", ").append(methodName);
 
         sb.append(")");
         return sb.toString();
@@ -430,6 +488,8 @@ public class ClCodeConfig implements VertxPojo, IClCodeConfig {
         setTenantId(from.getTenantId());
         setCodeName(from.getCodeName());
         setDesc(from.getDesc());
+        setServerAddress(from.getServerAddress());
+        setMethodName(from.getMethodName());
     }
 
     @Override

@@ -139,6 +139,26 @@ public interface IClCodeConfig extends VertxPojo, Serializable {
      */
     public String getDesc();
 
+    /**
+     * Setter for <code>public.cl_code_config.server_address</code>. 服务地址 唯一
+     */
+    public IClCodeConfig setServerAddress(String value);
+
+    /**
+     * Getter for <code>public.cl_code_config.server_address</code>. 服务地址 唯一
+     */
+    public String getServerAddress();
+
+    /**
+     * Setter for <code>public.cl_code_config.method_name</code>. 方法名
+     */
+    public IClCodeConfig setMethodName(String value);
+
+    /**
+     * Getter for <code>public.cl_code_config.method_name</code>. 方法名
+     */
+    public String getMethodName();
+
     // -------------------------------------------------------------------------
     // FROM and INTO
     // -------------------------------------------------------------------------
@@ -169,6 +189,8 @@ public interface IClCodeConfig extends VertxPojo, Serializable {
                 setOrThrow(this::setTenantId,json::getLong,"tenant_id","java.lang.Long");
                 setOrThrow(this::setCodeName,json::getString,"code_name","java.lang.String");
                 setOrThrow(this::setDesc,json::getString,"desc","java.lang.String");
+                setOrThrow(this::setServerAddress,json::getString,"server_address","java.lang.String");
+                setOrThrow(this::setMethodName,json::getString,"method_name","java.lang.String");
                 return this;
         }
 
@@ -188,6 +210,8 @@ public interface IClCodeConfig extends VertxPojo, Serializable {
                 json.put("tenant_id",getTenantId());
                 json.put("code_name",getCodeName());
                 json.put("desc",getDesc());
+                json.put("server_address",getServerAddress());
+                json.put("method_name",getMethodName());
                 return json;
         }
 

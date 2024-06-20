@@ -21,24 +21,12 @@ public class BaseQuery implements Serializable {
 
     protected Integer pageNo;
 
-    /**
-     * 项目ID
-     */
-    protected Long tenantCode;
 
-    /**
-     * 应用ID
-     */
-    protected Long appId;
-
-
-//    private Long projectId;
     public BaseQuery() {
     }
-    public BaseQuery(Integer pageSize, Integer pageNo, Long tenantCode) {
+    public BaseQuery(Integer pageSize, Integer pageNo) {
         this.pageSize = pageSize;
         this.pageNo = pageNo;
-        this.tenantCode = tenantCode;
     }
 
     public JsonObject getPager(){

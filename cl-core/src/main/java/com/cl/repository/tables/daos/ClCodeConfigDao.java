@@ -204,6 +204,38 @@ public class ClCodeConfigDao extends AbstractReactiveVertxDAO<ClCodeConfigRecord
                 return findManyByCondition(ClCodeConfig.CL_CODE_CONFIG.DESC.in(values),limit);
         }
 
+        /**
+     * Find records that have <code>server_address IN (values)</code>
+     * asynchronously
+     */
+        public Single<List<com.cl.repository.tables.pojos.ClCodeConfig>> findManyByServerAddress(Collection<String> values) {
+                return findManyByCondition(ClCodeConfig.CL_CODE_CONFIG.SERVER_ADDRESS.in(values));
+        }
+
+        /**
+     * Find records that have <code>server_address IN (values)</code>
+     * asynchronously limited by the given limit
+     */
+        public Single<List<com.cl.repository.tables.pojos.ClCodeConfig>> findManyByServerAddress(Collection<String> values, int limit) {
+                return findManyByCondition(ClCodeConfig.CL_CODE_CONFIG.SERVER_ADDRESS.in(values),limit);
+        }
+
+        /**
+     * Find records that have <code>method_name IN (values)</code>
+     * asynchronously
+     */
+        public Single<List<com.cl.repository.tables.pojos.ClCodeConfig>> findManyByMethodName(Collection<String> values) {
+                return findManyByCondition(ClCodeConfig.CL_CODE_CONFIG.METHOD_NAME.in(values));
+        }
+
+        /**
+     * Find records that have <code>method_name IN (values)</code>
+     * asynchronously limited by the given limit
+     */
+        public Single<List<com.cl.repository.tables.pojos.ClCodeConfig>> findManyByMethodName(Collection<String> values, int limit) {
+                return findManyByCondition(ClCodeConfig.CL_CODE_CONFIG.METHOD_NAME.in(values),limit);
+        }
+
         @Override
         public ReactiveRXQueryExecutor<ClCodeConfigRecord,com.cl.repository.tables.pojos.ClCodeConfig,Long> queryExecutor(){
                 return (ReactiveRXQueryExecutor<ClCodeConfigRecord,com.cl.repository.tables.pojos.ClCodeConfig,Long>) super.queryExecutor();
