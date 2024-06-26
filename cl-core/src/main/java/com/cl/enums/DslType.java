@@ -1,5 +1,6 @@
 package com.cl.enums;
 
+import com.cl.constant.DslTypeConstant;
 import lombok.Getter;
 
 /**
@@ -9,7 +10,7 @@ import lombok.Getter;
  */
 @Getter
 public enum DslType {
-    GROOVY("groovy","groovy"),
+    GROOVY(DslTypeConstant.GROOVY,"groovy"),
     ;
 
     private final String code;

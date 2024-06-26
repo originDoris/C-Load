@@ -1,12 +1,12 @@
 package com.cl.service.impl;
 
+import com.cl.context.ExecuteContext;
 import com.cl.enums.CodeStatus;
 import com.cl.framework.core.domain.BasePage;
 import com.cl.framework.core.enums.ErrorCodeEnum;
 import com.cl.framework.core.exception.ParamException;
 import com.cl.framework.core.funcation.CubeFn;
 import com.cl.framework.core.id.SnowFlakeIdWorker;
-import com.cl.framework.core.runtime.Envelop;
 import com.cl.framework.core.utils.AsyncUtils;
 import com.cl.framework.core.utils.DateUtil;
 import com.cl.framework.core.vertx.VertxLauncher;
@@ -18,17 +18,27 @@ import com.cl.framework.plugin.jooq.util.condition.JooqCond;
 import com.cl.model.query.CodeConfigQuery;
 import com.cl.repository.tables.pojos.ClCodeConfig;
 import com.cl.service.CodeConfigService;
+import com.cl.service.ExecuteCodeService;
 import com.cl.util.UserUtils;
 import io.reactivex.rxjava3.core.Single;
 import io.vertx.core.json.JsonObject;
+import lombok.extern.slf4j.Slf4j;
 import org.jooq.Condition;
+
+import javax.inject.Inject;
+import java.text.MessageFormat;
+import java.util.Map;
 
 /**
  * CodeConfigServiceImpl
  *
  * @author xhz
  */
+@Slf4j
 public class CodeConfigServiceImpl implements CodeConfigService {
+
+    @Inject
+    private ExecuteContext executorContext;
 
     @Override
     public Single<Boolean> save(ClCodeConfig clCodeConfig) {
@@ -76,11 +86,26 @@ public class CodeConfigServiceImpl implements CodeConfigService {
                 }
                 return clCodeConfig;
             }).flatMap(clCodeConfig -> {
-//                CubeFn.safeNull(() -> VertxLauncher.getVertx().eventBus().<Envelop>consumer(clCodeConfig.getServerAddress(),
-//                                message -> {
-//                                    invoker.invoke(reference, method, message);
-//                                }),
-//                        address, reference, method);
+
+                VertxLauncher.getVertx().eventBus().<JsonObject>consumer(clCodeConfig.getServerAddress(), message -> {
+                    JsonObject body = message.body();
+                    executorContext.getExecuteService(clCodeConfig.getDsl()).flatMap(optional -> {
+                        if (optional.isEmpty()) {
+                            return Single.error(new ParamException(ErrorCodeEnum.PARAM_ERROR_CODE, "不支持的dsl！"));
+                        }
+                        Map<String, Object> map = body.getMap();
+                        ExecuteCodeService executeCodeService = optional.get();
+                        return executeCodeService.execute(clCodeConfig, map);
+                    }).subscribe((o, throwable) -> {
+                        if (throwable != null) {
+                            throwable.printStackTrace();
+                        }else{
+                            log.info(MessageFormat.format("execute {0},methodName:{1} success", clCodeConfig.getServerAddress(), clCodeConfig.getMethodName()));
+                        }
+                    });
+                });
+
+
                 return Single.just(true);
 
             });
